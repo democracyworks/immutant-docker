@@ -2,10 +2,10 @@
 
 ## How this container works
 
-When this container is run, it scans directories at /servers/ for
-Immutant archives, creating a deployment descriptor and a deployment
-marker file for each. Then it starts up Immutant via it's
-standalone.sh script.
+When this container is run, it scans directories at /servers/* for
+Immutant deployment descriptors, copies them to the standalone
+deployments directory, and adds a deployment marker file for
+each. Then it starts up Immutant via it's standalone.sh script.
 
 ## Using this Docker container
 
@@ -20,6 +20,7 @@ FROM stackbrew/ubuntu:13.10
 VOLUME ["/servers/my-immutant-project/"]
 
 ADD target/my-immutant-project.ima /servers/my-immutant-project/
+ADD resources/immutant/my-immutant-project.clj /servers/my-immutant-project/
 ```
 
 Then, when you run the Immutant container, you attach each project's

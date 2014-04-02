@@ -1,9 +1,9 @@
 #!/bin/bash
 
-for IMA in /servers/**/*.ima; do
-  SIMPLE_NAME=$(basename $IMA .ima)
-  echo "{:root \"$IMA\" :resolve-dependencies false}" > /immutant-$IMMUTANT_VERSION/jboss/standalone/deployments/$SIMPLE_NAME.clj
-  touch /immutant-$IMMUTANT_VERSION/jboss/standalone/deployments/$SIMPLE_NAME.clj.dodeploy
+for DESCRIPTOR in /servers/*/*.clj; do
+  BASENAME=$(basename $DESCRIPTOR)
+  cp $DESCRIPTOR /immutant-$IMMUTANT_VERSION/jboss/standalone/deployments/
+  touch /immutant-$IMMUTANT_VERSION/jboss/standalone/deployments/$BASENAME.dodeploy
 done
 
-/immutant-$IMMUTANT_VERSION/jboss/bin/standalone.sh
+/immutant-$IMMUTANT_VERSION/jboss/bin/standalone.sh -b 0.0.0.0
