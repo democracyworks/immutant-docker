@@ -4,7 +4,7 @@ build:
     - script:
         name: Build the container
         code: |
-          docker build -t quai.io/democracyworks/immutant .
+          docker build -t quay.io/democracyworks/immutant .
     - script:
         name: Login to quay.io
         hide-from-log: true
@@ -14,3 +14,4 @@ build:
         name: Push the container to the public registry
         code: |
           docker push quay.io/democracyworks/immutant
+          docker pull quay.io/democracyworks/immutant
