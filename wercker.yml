@@ -15,3 +15,23 @@ build:
         code: |
           docker push quay.io/democracyworks/immutant
           docker pull quay.io/democracyworks/immutant
+deploy:
+  steps:
+    - add-to-known_hosts:
+        hostname: vpc-gw.turbovote.org
+    - add-to-known_hosts:
+        hostname: github.com
+    - mktemp:
+        envvar: PRIVATEKEY_PATH
+    - create-file:
+        name: write key
+        filename: $PRIVATEKEY_PATH
+        content: $DEPLOY_PRIVATE_KEY
+        overwrite: true
+        hide-from-log: true
+    - script:
+        name: setup ssh tunnels to docker hosts
+        code: |
+          ssh -i $PRIVATEKEY_PATH ec2-user@vpc-gw.turbovote.org -L2222:docker1-int.turbovote.org:22 -f -N
+          ssh -i $PRIVATEKEY_PATH ec2-user@vpc-gw.turbovote.org -L2223:docker2-int.turbovote.org:22 -f -N
+    - cmshea/immutant-deploy@0.0.1
