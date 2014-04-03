@@ -1,0 +1,16 @@
+box: wercker-labs/docker
+build:
+  steps:
+    - script:
+        name: Build the container
+        code: |
+          docker build -t quai.io/democracyworks/immutant .
+    - script:
+        name: Login to quay.io
+        hide-from-log: true
+        code: |
+          echo $QUAY_DOCKERCFG > $HOME/.dockercfg
+    - script:
+        name: Push the container to the private registry
+        code: |
+          docker push quay.io/democracyworks/immutant
