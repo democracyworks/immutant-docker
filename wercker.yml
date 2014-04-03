@@ -11,6 +11,6 @@ build:
         code: |
           echo $QUAY_DOCKERCFG > $HOME/.dockercfg
     - script:
-        name: Push the container to the private registry
+        name: Push the container to the public registry
         code: |
           docker push quay.io/democracyworks/immutant
