@@ -7,6 +7,7 @@ ENV IMMUTANT_VERSION 1.1.0-slim
 RUN wget http://repository-projectodd.forge.cloudbees.com/release/org/immutant/immutant-dist/1.1.0/immutant-dist-$IMMUTANT_VERSION.zip
 RUN unzip immutant-dist-$IMMUTANT_VERSION.zip
 
-ADD setup-and-run-immutant.sh /setup-and-run-immutant.sh
+EXPOSE 8080
 
-CMD ["/setup-and-run-immutant.sh"]
+ADD start-immutant.sh /start-immutant.sh
+ADD supervisord-immutant.conf /etc/supervisor/conf.d/supervisord-immutant.conf
