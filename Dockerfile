@@ -6,7 +6,6 @@ RUN apt-get install -y haproxy ruby1.9.1 ruby1.9.1-dev rubygems
 RUN gem install synapse
 RUN echo ENABLED=1 > /etc/default/haproxy
 ADD start-synapse.sh /start-synapse.sh
-ADD synapse-conf.json /synapse-conf.json
 ADD /supervisord-synapse.conf /etc/supervisor/conf.d/supervisord-synapse.conf
 RUN mkdir /var/haproxy/
 
@@ -18,6 +17,8 @@ RUN wget http://repository-projectodd.forge.cloudbees.com/release/org/immutant/i
 RUN unzip immutant-dist-$IMMUTANT_VERSION.zip
 
 EXPOSE 8080
+
+ADD env-configs/ /env-configs/
 
 ADD start-immutant.sh /start-immutant.sh
 ADD supervisord-immutant.conf /etc/supervisor/conf.d/supervisord-immutant.conf

@@ -1,2 +1,2 @@
 #!/bin/bash
-synapse --conf=/synapse-conf.json
+synapse --conf=/env-configs/immutant/$ENVIRONMENT/synapse-conf.json
