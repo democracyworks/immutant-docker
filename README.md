@@ -24,10 +24,21 @@ ADD resources/immutant/my-immutant-project.clj /servers/my-immutant-project/
 ```
 
 Then, when you run the Immutant container, you attach each project's
-Docker container with the `--volumes-from` flag. For example:
+Docker container with the `--volumes-from` flag.
+
+This container uses [synapse](https://github.com/airbnb/synapse) for
+service discovery, and can include multiple configurations which
+choose from at runtime. Place `synapse-conf.json` files at
+`/env-configs/immutant/{ENVIRONMENT}/sypapse-conf.json`. You choose
+the configuration to use by setting `ENVIRONMENT` on the container at
+runtime.
+
+For example:
 
 ```sh
-docker run -t -i --volumes-from my-immutant-project immutant-docker
+docker run -t -i -e ENVIRONMENT=production \
+                 --volumes-from my-immutant-project \
+                 immutant-docker
 ```
 
 You can attach as many such volumes as you find reasonable.
@@ -40,6 +51,4 @@ need to be changed. Just attach different containers to it.
 * This was an afternoon's worth of experimentation, so it might only
   be good for a very specific use-case. And even still, maybe not good
   for that.
-* Immutant is not run under any sort of supervisor, so when it dies,
-  it dies.
 * There may very well be much better ways to do this.
