@@ -52,4 +52,4 @@ deploy:
         code: |
           ssh -i $PRIVATEKEY_PATH ec2-user@vpc-gw.turbovote.org -L2222:docker1-int.turbovote.org:22 -f -N
           ssh -i $PRIVATEKEY_PATH ec2-user@vpc-gw.turbovote.org -L2223:docker2-int.turbovote.org:22 -f -N
-    - cmshea/immutant-deploy@0.0.6
+    - cmshea/immutant-deploy@0.0.7
