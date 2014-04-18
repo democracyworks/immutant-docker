@@ -29,7 +29,7 @@ Docker container with the `--volumes-from` flag.
 This container uses [synapse](https://github.com/airbnb/synapse) for
 service discovery, and can include multiple configurations which
 choose from at runtime. Place `synapse-conf.json` files at
-`/env-configs/immutant/{ENVIRONMENT}/sypapse-conf.json`. You choose
+`/env-configs/immutant/{ENVIRONMENT}/synapse-conf.json`. You choose
 the configuration to use by setting `ENVIRONMENT` on the container at
 runtime.
 
