@@ -20,5 +20,7 @@ EXPOSE 8080
 
 ADD env-configs/ /env-configs/
 
+RUN cp /env-configs/immutant/$IMMUTANT_ENVIRONMENT/immutant-logging.xml /immutant-$IMMUTANT_VERSION/jboss/standalone/configuration/standalone.xml
+
 ADD start-immutant.sh /start-immutant.sh
 ADD supervisord-immutant.conf /etc/supervisor/conf.d/supervisord-immutant.conf
