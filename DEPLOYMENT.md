@@ -19,7 +19,7 @@ available at runtime.
 
 Additionally, the Immutant container holds various Synapse
 configurations. You specify which you'd like to use by setting the
-`ENVIRONMENT` environment variable. Currently, there are just
+`IMMUTANT_ENVIRONMENT` environment variable. Currently, there are just
 "production" and "development" configurations. This setting only
 affects Synapse, not any project-level configurations.
 
@@ -49,8 +49,8 @@ environment variables must be set on Wercker.
     <td>Path to the private key that authenticates the deploy user on our docker hosts. This should be set in a previous Wercker step.</td>
   </tr>
   <tr>
-    <td><strong>ENVIRONMENT</strong></td>
-    <td>The environment name for the Synapse configurations to use. This would be set in your deploy pipeline.</td>
+    <td><strong>IMMUTANT_ENVIRONMENT</strong></td>
+    <td>The environment name for the configurations to use. This would be set in your deploy pipeline.</td>
   </tr>
 </table>
 
