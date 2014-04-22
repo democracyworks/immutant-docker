@@ -1,6 +1,24 @@
 box: wercker-labs/docker
 build:
   steps:
+    - add-to-known_hosts:
+        hostname: github.com
+    - mktemp:
+        envvar: GITHUB_DEPLOY_KEY_PATH
+    - create-file:
+        name: write github deploy key
+        filename: $GITHUB_DEPLOY_KEY_PATH
+        content: $GITHUB_DEPLOY_PRIVATE
+        overwrite: true
+        hide-from-log: true
+    - script:
+        name: configure ssh key for github
+        code: |
+          echo -e "Host env-configs\n  HostName github.com\n  User git\n  IdentityFile $GITHUB_DEPLOY_KEY_PATH" >> ~/.ssh/config
+    - script:
+        name: fetch configs
+        code: |
+          git clone -b $CONFIG_BRANCH --depth 1 --single-branch $CONFIG_REPO env-configs
     - script:
         name: Build the container
         code: |
@@ -34,4 +52,4 @@ deploy:
         code: |
           ssh -i $PRIVATEKEY_PATH ec2-user@vpc-gw.turbovote.org -L2222:docker1-int.turbovote.org:22 -f -N
           ssh -i $PRIVATEKEY_PATH ec2-user@vpc-gw.turbovote.org -L2223:docker2-int.turbovote.org:22 -f -N
-    - cmshea/immutant-deploy@0.0.2
+    - cmshea/immutant-deploy@0.0.10
