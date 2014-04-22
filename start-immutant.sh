@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp /env-configs/immutant/$IMMUTANT_ENVIRONMENT/immutant-logging.xml /immutant-$IMMUTANT_VERSION/jboss/standalone/configuration/standalone.xml
+cp /env-configs/immutant/$IMMUTANT_ENVIRONMENT/standalone.xml /immutant-$IMMUTANT_VERSION/jboss/standalone/configuration/standalone.xml
 
 for DESCRIPTOR in /servers/*/*.clj; do
   BASENAME=$(basename $DESCRIPTOR)
