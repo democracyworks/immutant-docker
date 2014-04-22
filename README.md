@@ -45,10 +45,3 @@ You can attach as many such volumes as you find reasonable.
 
 And however you change your projects, the Immuntant container doesn't
 need to be changed. Just attach different containers to it.
-
-## Caveats
-
-* This was an afternoon's worth of experimentation, so it might only
-  be good for a very specific use-case. And even still, maybe not good
-  for that.
-* There may very well be much better ways to do this.
