@@ -1,4 +1,4 @@
-FROM quay.io/democracyworks/clojure-api-build:latest
+FROM democracyworks/clojure-api-build:latest
 
 # setup synapse
 RUN apt-get update
