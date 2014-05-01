@@ -1,7 +1,7 @@
 FROM democracyworks/clojure-api-build:latest
 
 # setup synapse
-RUN apt-get install -y haproxy ruby1.9.1 ruby1.9.1-dev rubygems
+RUN apt-get install -y haproxy ruby1.9.1 ruby1.9.1-dev patch make
 RUN gem install democracyworks-synapse
 RUN echo ENABLED=1 > /etc/default/haproxy
 ADD start-synapse.sh /start-synapse.sh
