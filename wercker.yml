@@ -18,7 +18,7 @@ build:
     - script:
         name: fetch configs
         code: |
-          git clone -b $CONFIG_BRANCH --depth 1 --single-branch $CONFIG_REPO env-configs
+          rm -r env-configs && git clone -b $CONFIG_BRANCH --depth 1 --single-branch $CONFIG_REPO env-configs
     - script:
         name: Build the container
         code: |
