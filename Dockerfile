@@ -2,7 +2,7 @@ FROM democracyworks/clojure-api-build:latest
 
 # setup synapse
 RUN apt-get install -y haproxy ruby1.9.1 ruby1.9.1-dev patch make
-RUN gem install democracyworks-synapse
+RUN gem install synapse --version "0.10.0" --no-rdoc --no-ri
 RUN echo ENABLED=1 > /etc/default/haproxy
 ADD start-synapse.sh /start-synapse.sh
 ADD /supervisord-synapse.conf /etc/supervisor/conf.d/supervisord-synapse.conf
