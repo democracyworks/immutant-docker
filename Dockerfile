@@ -1,4 +1,5 @@
 FROM democracyworks/clojure-api-build:latest
+MAINTAINER Democracy Works, Inc. <dev@turbovote.org>
 
 # setup synapse
 RUN apt-get install -y haproxy ruby1.9.1 ruby1.9.1-dev patch make
@@ -10,10 +11,10 @@ RUN mkdir /var/haproxy/
 
 RUN apt-get install unzip -y
 
-ENV IMMUTANT_VERSION 1.1.0-slim
+ENV IMMUTANT_VERSION 1.1.1
 
-RUN wget http://repository-projectodd.forge.cloudbees.com/release/org/immutant/immutant-dist/1.1.0/immutant-dist-$IMMUTANT_VERSION.zip
-RUN unzip immutant-dist-$IMMUTANT_VERSION.zip
+RUN wget http://repository-projectodd.forge.cloudbees.com/release/org/immutant/immutant-dist/${IMMUTANT_VERSION}/immutant-dist-${IMMUTANT_VERSION}-slim.zip
+RUN unzip immutant-dist-${IMMUTANT_VERSION}-slim.zip
 
 EXPOSE 8080
 
