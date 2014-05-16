@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Check Args
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 project environment"
+  exit 1
+fi
+
+PROJECT=$1
+ENVIRONMENT=$2
+
+# Enforce LEIN_USERNAME and LEIN_PASSWORD are both set
+if [[ -z $LEIN_USERNAME || -z $LEIN_PASSWORD ]]; then
+  echo "Set LEIN_USERNAME and LEIN_PASSWORD to your my.datomic.com credentials" >&2
+  exit 2
+fi
+
+GREEN="$(tput setaf 10)"
+YELLOW="$(tput setaf 11)"
+CYAN="$(tput setaf 14)"
+RESET="$(tput setaf 15)"
+
+function header1 {
+  echo "${GREEN}************************************************************************"
+  echo "*${YELLOW} $1"
+  echo "${GREEN}************************************************************************${RESET}"
+}
+
+function header2 {
+  echo "${YELLOW}* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+  echo "*${CYAN} $1"
+  echo "${YELLOW}* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *${RESET}"
+}
+
+# Build PROJECT
+header1 "Building $PROJECT"
+
+cd ../$PROJECT
+
+rm -f immutant-volume.cid
+
+header2 "docker build"
+docker build -t $PROJECT .
+
+header2 "docker run"
+docker run --cidfile immutant-volume.cid \
+           --env ENVIRONMENT=$ENVIRONMENT \
+           --env LEIN_USERNAME=$LEIN_USERNAME \
+           --env LEIN_PASSWORD=$LEIN_PASSWORD \
+           $PROJECT
+
+# Run immutant
+cd ..
+
+header1 "Run immutant"
+
+VOLUMES_FROM=""
+
+for FILE in $(ls **/immutant-volume.cid); do
+  VOLUMES_FROM="$VOLUMES_FROM --volumes-from `cat $FILE`"
+done
+
+IMMUTANT_CMD="docker run -p 8080:8080 -P --env IMMUTANT_ENVIRONMENT=development $VOLUMES_FROM immutant-dev"
+
+header2 "$IMMUTANT_CMD"
+
+$IMMUTANT_CMD
