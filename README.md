@@ -46,7 +46,7 @@ You can attach as many such volumes as you find reasonable.
 And however you change your projects, the Immuntant container doesn't
 need to be changed. Just attach different containers to it.
 
-# Running all your immutant projects together locally
+## Running all your immutant projects together locally
 
 Two scripts are provided to help run mulitple projects together on
 your local dev machine. The first `script/build-dev`, builds the
