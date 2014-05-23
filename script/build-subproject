@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check Args
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
   echo "Usage: $0 project environment"
   exit 1
 fi
@@ -60,7 +60,7 @@ for FILE in $(ls **/immutant-volume.cid); do
   VOLUMES_FROM="$VOLUMES_FROM --volumes-from $(<$FILE)"
 done
 
-IMMUTANT_CMD="docker run -p 8080:8080 -P --env IMMUTANT_ENVIRONMENT=development $VOLUMES_FROM immutant-dev"
+IMMUTANT_CMD="docker run -p 8080:8080 -P --env IMMUTANT_ENVIRONMENT=development $VOLUMES_FROM ${@:3} immutant-dev"
 
 header2 "$IMMUTANT_CMD"
 
