@@ -2,7 +2,10 @@
 
 # Check Args
 if [ $# -lt 2 ]; then
-  echo "Usage: $0 project environment"
+  echo "Usage: $0 project environment [additional args]"
+  echo
+  echo "You may supply additional args to be passed to the \`docker run\` invocation"
+  echo "for the immutant container (e.g., adding links to other containers)."
   exit 1
 fi
 
