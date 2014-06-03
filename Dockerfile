@@ -1,4 +1,4 @@
-FROM democracyworks/clojure-api-build:latest
+FROM quay.io/democracyworks/clojure-api-build:latest
 MAINTAINER Democracy Works, Inc. <dev@turbovote.org>
 
 # setup synapse
