@@ -12,12 +12,6 @@ fi
 PROJECT=$1
 ENVIRONMENT=$2
 
-# Enforce LEIN_USERNAME and LEIN_PASSWORD are both set
-if [[ -z $LEIN_USERNAME || -z $LEIN_PASSWORD ]]; then
-  echo "Set LEIN_USERNAME and LEIN_PASSWORD to your my.datomic.com credentials" >&2
-  exit 2
-fi
-
 GREEN="$(tput setaf 10)"
 YELLOW="$(tput setaf 11)"
 CYAN="$(tput setaf 14)"
