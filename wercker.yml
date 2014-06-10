@@ -32,7 +32,6 @@ build:
         name: Push the container to the public registry
         code: |
           docker push quay.io/democracyworks/immutant
-          docker pull quay.io/democracyworks/immutant
 deploy:
   steps:
     - add-to-known_hosts:
