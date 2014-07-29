@@ -1,5 +1,5 @@
-FROM quay.io/democracyworks/clojure-api-build:latest
-MAINTAINER Democracy Works, Inc. <dev@turbovote.org>
+FROM quay.io/democracyworks/clojure-api:latest
+MAINTAINER Democracy Works, Inc. <dev@democracy.works>
 
 # setup synapse
 RUN apt-get install -y haproxy ruby1.9.1 ruby1.9.1-dev patch make
