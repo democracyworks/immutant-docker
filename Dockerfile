@@ -1,4 +1,4 @@
-FROM quay.io/democracyworks/clojure-api:latest
+FROM quay.io/democracyworks/clojure-api-supervisor:latest
 MAINTAINER Democracy Works, Inc. <dev@democracy.works>
 
 # setup synapse
