@@ -22,5 +22,3 @@ ADD env-configs/ /env-configs/
 
 ADD start-immutant.sh /start-immutant.sh
 ADD supervisord-immutant.conf /etc/supervisor/conf.d/supervisord-immutant.conf
-
-CMD ["/run.sh"]
