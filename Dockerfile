@@ -9,7 +9,7 @@ ADD start-synapse.sh /start-synapse.sh
 ADD /supervisord-synapse.conf /etc/supervisor/conf.d/supervisord-synapse.conf
 RUN mkdir /var/haproxy/
 
-ENV IMMUTANT_VERSION 1.1.1
+ENV IMMUTANT_VERSION 1.1.4
 
 RUN wget http://repository-projectodd.forge.cloudbees.com/release/org/immutant/immutant-dist/${IMMUTANT_VERSION}/immutant-dist-${IMMUTANT_VERSION}-slim.zip
 RUN unzip immutant-dist-${IMMUTANT_VERSION}-slim.zip
