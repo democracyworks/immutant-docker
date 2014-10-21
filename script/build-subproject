@@ -54,7 +54,10 @@ header1 "Run immutant"
 VOLUMES_FROM=""
 
 for FILE in $(ls **/immutant-volume.cid); do
-  VOLUMES_FROM="$VOLUMES_FROM --volumes-from $(<$FILE)"
+  CONTAINER_ID="$(<$FILE)"
+  if docker inspect $CONTAINER_ID > /dev/null 2>&1; then
+    VOLUMES_FROM="$VOLUMES_FROM --volumes-from $CONTAINER_ID"
+  fi
 done
 
 IMMUTANT_CMD="docker run -p 8080:8080 -P --env IMMUTANT_ENVIRONMENT=development $VOLUMES_FROM ${@:3} immutant-dev"
